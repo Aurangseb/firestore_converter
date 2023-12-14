@@ -1,6 +1,4 @@
-[English](https://github.com/Aurangseb/firestore_converterWithFbConverter/blob/master/packages/firestore_converter/README.md) 
-
-![Build](https://github.com/Aurangseb/firestore_converterWithFbConverter/workflows/Build/badge.svg)
+![Build](https://github.com/Aurangseb/firestore_converter/workflows/Build/badge.svg)
 [![pub package](https://img.shields.io/pub/v/firestore_converter.svg)](https://pub.dartlang.org/packages/firestore_converter)
 
 This packages provides you with a new annotation `@FirestoreConverter(defaultPath: 'someDataPath')` to easily generate Firestore [with_converter] implementations 
@@ -11,16 +9,16 @@ but it is not a requirement.
 
 # Installation
 
-To use [firebase_converter], you will need your typical [build_runner]/code-generator setup.\
-First, install [build_runner] and [firebase_converter] by adding them to your `pubspec.yaml` file:
+To use [firestore_converter], you will need your typical [build_runner]/code-generator setup.\
+First, install [build_runner] and [firestore_converter] by adding them to your `pubspec.yaml` file:
 
 ```console
-flutter pub add firebase_converter_annotation
+flutter pub add firestore_converter_annotation
 flutter pub add dev:build_runner
-flutter pub add dev:firebase_converter
+flutter pub add dev:firestore_converter
 ```
 
-Since [firebase_converter] relies on `instance.toJson` to be present in the annotated model class, 
+Since [firestore_converter] relies on `instance.toJson` to be present in the annotated model class, 
 you should probably also add either [freezed], [json_serializable] or some other annotation that will
 provide you with a convenient implementation of `toJson`. 
 
@@ -44,12 +42,12 @@ name will be converted to lowercase, to conform with the dart function naming co
 
 * Does not support default settings from build.yaml since path settings are individual per model class.
 
-# Example using [firebase_converter] with [freezed]
+# Example using [firestore_converter] with [freezed]
 
 Define your model class, e.g. example.dart:
 
 ```dart
-part 'example.firebase_converter.dart';
+part 'example.firestore_converter.dart';
 part 'example.freezed.dart';
 part 'example.g.dart';
 

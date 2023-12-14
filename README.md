@@ -1,40 +1,38 @@
-[English](https://github.com/Aurangseb/firestore_converterWithFbConverter/blob/master/packages/firestore_converter/README.md) 
-
-![Build](https://github.com/Aurangseb/firestore_converterWithFbConverter/workflows/Build/badge.svg)
+![Build](https://github.com/Aurangseb/firestore_converter/workflows/Build/badge.svg)
 [![pub package](https://img.shields.io/pub/v/firestore_converter.svg)](https://pub.dartlang.org/packages/firestore_converter)
 
-This packages provides you with a new annotation `@FirestoreConverter(defaultPath: 'someDataPath')` to easily generate Firestore [with_converter] implementations 
+This packages provides you with a new annotation `@FirestoreConverter(defaultPath: 'someDataPath')` to easily generate Firestore [with_converter] implementations
 in order to reduce boilerplate code for data models.
 
-It is best used in conjunction with other annotations like [freezed] or [json_serializable], 
+It is best used in conjunction with other annotations like [freezed] or [json_serializable],
 but it is not a requirement.
 
 # Installation
 
-To use [firebase_converter], you will need your typical [build_runner]/code-generator setup.\
-First, install [build_runner] and [firebase_converter] by adding them to your `pubspec.yaml` file:
+To use [firestore_converter], you will need your typical [build_runner]/code-generator setup.\
+First, install [build_runner] and [firestore_converter] by adding them to your `pubspec.yaml` file:
 
 ```console
-flutter pub add firebase_converter_annotation
+flutter pub add firestore_converter_annotation
 flutter pub add dev:build_runner
-flutter pub add dev:firebase_converter
+flutter pub add dev:firestore_converter
 ```
 
-Since [firebase_converter] relies on `instance.toJson` to be present in the annotated model class, 
+Since [firestore_converter] relies on `instance.toJson` to be present in the annotated model class,
 you should probably also add either [freezed], [json_serializable] or some other annotation that will
-provide you with a convenient implementation of `toJson`. 
+provide you with a convenient implementation of `toJson`.
 
 # Usage
 
-Annotate a data class with `@FirestoreConverter(defaultPath: 'someDataPathInFirestore')` to generate two 
+Annotate a data class with `@FirestoreConverter(defaultPath: 'someDataPathInFirestore')` to generate two
 helper functions:
 
-* `${modelClassName}Collection` 
-* `${modelClassName}Doc` 
+* `${modelClassName}Collection`
+* `${modelClassName}Doc`
 
-Please note that this will be functions, not members since there is currently no way to add 
-static functions via code generation to the model class. The initial letter of the model 
-name will be converted to lowercase, to conform with the dart function naming conventions. 
+Please note that this will be functions, not members since there is currently no way to add
+static functions via code generation to the model class. The initial letter of the model
+name will be converted to lowercase, to conform with the dart function naming conventions.
 
 # Things to note
 
@@ -44,12 +42,12 @@ name will be converted to lowercase, to conform with the dart function naming co
 
 * Does not support default settings from build.yaml since path settings are individual per model class.
 
-# Example using [firebase_converter] with [freezed]
+# Example using [firestore_converter] with [freezed]
 
 Define your model class, e.g. example.dart:
 
 ```dart
-part 'example.firebase_converter.dart';
+part 'example.firestore_converter.dart';
 part 'example.freezed.dart';
 part 'example.g.dart';
 
@@ -75,7 +73,7 @@ DocumentReference<Example> doc = exampleDoc(path: 'some_other_path', docId: 'exa
 // retrieve some document data
 var myDoc = exampleDoc(path: 'some_other_path', docId: 'exampleId').get();
 // Access typed members directly from the snapshot
-print(myDoc.data().a);
+debugPrint(myDoc.data().a);
 ```
 
 # References
