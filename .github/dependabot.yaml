@@ -1,0 +1,23 @@
+version: 2
+enable-beta-ecosystems: true
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    reviewers:
+      - "Aurangseb"
+
+  - package-ecosystem: "pub"
+    directory: "/packages/firestore_converter"
+    schedule:
+      interval: "weekly"
+    reviewers:
+      - "Aurangseb"
+
+  - package-ecosystem: "pub"
+    directory: "/packages/firestore_converter_annotations"
+    schedule:
+      interval: "weekly"
+    reviewers:
+      - "Aurangseb"
