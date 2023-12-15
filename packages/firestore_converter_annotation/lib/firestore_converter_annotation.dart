@@ -45,7 +45,6 @@ class FirestoreConverter {
   ///
   // @JsonKey(defaultValue: false)
   final String? defaultPath;
-
 }
 
 /// Enables generation of Firestore withConverter implementations

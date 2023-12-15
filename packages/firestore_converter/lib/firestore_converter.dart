@@ -8,11 +8,11 @@ Builder firestoreConverterGeneratorFactory(BuilderOptions options) =>
 
 class FirestoreConverterGenerator extends GeneratorForAnnotation<FirestoreConverter> {
   @override
-  generateForAnnotatedElement(
-      Element element, ConstantReader annotation, BuildStep buildStep) {
+  generateForAnnotatedElement(Element element, ConstantReader annotation, BuildStep buildStep) {
     if (element is! ClassElement) {
       throw InvalidGenerationSourceError(
-          '@FirestoreConverter should only be applied on classes. Failing element: ${element.name}', element: element);
+          '@FirestoreConverter should only be applied on classes. Failing element: ${element.name}',
+          element: element);
     }
 
     var path = annotation.read('defaultPath').stringValue;
@@ -42,5 +42,4 @@ class FirestoreConverterGenerator extends GeneratorForAnnotation<FirestoreConver
       }
     ''';
   }
-
 }

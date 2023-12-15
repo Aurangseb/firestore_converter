@@ -1,9 +1,15 @@
 name: firestore_converter
 description: >
   FirestoreConverter generates Firestore withConverter implementations for the annotated class.
-version: 1.0.4
+version: 1.0.5
 repository: https://github.com/Aurangseb/firestore_converter
 issue_tracker: https://github.com/Aurangseb/firestore_converter/issues
+platforms:
+  android:
+  ios:
+  macos:
+  web:
+  windows:
 
 environment:
   sdk: ">=2.17.0 <4.0.0"

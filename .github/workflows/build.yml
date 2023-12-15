@@ -19,13 +19,8 @@ jobs:
           - packages/firestore_converter
         channel:
           - master
-          - stable
         dependencies:
           - get
-          - downgrade
-        exclude:
-          - channel: master
-            dependencies: downgrade
 
     steps:
       - uses: actions/checkout@v4

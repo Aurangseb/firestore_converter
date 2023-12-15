@@ -1,26 +1,72 @@
 ![Build](https://github.com/Aurangseb/firestore_converter/workflows/Build/badge.svg)
 [![pub package](https://img.shields.io/pub/v/firestore_converter.svg)](https://pub.dartlang.org/packages/firestore_converter)
 
+# Reduce boilerplate code
+
 This packages provides you with a new annotation `@FirestoreConverter(defaultPath: 'someDataPath')` to easily generate Firestore [with_converter] implementations
 in order to reduce boilerplate code for data models.
 
 It is best used in conjunction with other annotations like [freezed] or [json_serializable],
 but it is not a requirement.
 
-# Installation
+Before:
 
-To use [firestore_converter], you will need your typical [build_runner]/code-generator setup.\
-First, install [build_runner] and [firestore_converter] by adding them to your `pubspec.yaml` file:
+```dart
+part 'example.freezed.dart';
+part 'example.g.dart';
 
-```console
-flutter pub add firestore_converter_annotation
-flutter pub add dev:build_runner
-flutter pub add dev:firestore_converter
+@freezed
+class Example<T> with _$Example<T> {
+  factory Example(int a) = _Example;
+  factory Example.fromJson(Map<String, Object?> json) => _$ExampleFromJson(json);
+}
+
+CollectionReference<Example> exampleCollection(
+    [String path = 'examples']) {
+  return FirebaseFirestore.instance
+      .collection(path)
+      .withConverter<Example>(
+      fromFirestore: (snapshot, _) =>
+          _$ExampleFromJson(snapshot.data()!),
+      toFirestore: (instance, _) => instance.toJson());
+}
+
+DocumentReference<Example> exampleDoc(
+    {String path = 'examples', required String docId}) {
+  return FirebaseFirestore.instance
+      .doc('$path/$docId')
+      .withConverter<Example>(
+      fromFirestore: (snapshot, _) =>
+          _$ExampleFromJson(snapshot.data()!),
+      toFirestore: (instance, _) => instance.toJson());
+}
 ```
 
-Since [firestore_converter] relies on `instance.toJson` to be present in the annotated model class,
-you should probably also add either [freezed], [json_serializable] or some other annotation that will
-provide you with a convenient implementation of `toJson`.
+After:
+```dart
+part 'example.firestore_converter.dart';
+part 'example.freezed.dart';
+part 'example.g.dart';
+
+@freezed
+@FirestoreConverter(defaultPath: 'examples')
+class Example<T> with _$Example<T> {
+  factory Example(int a) = _Example;
+  factory Example.fromJson(Map<String, Object?> json) => _$ExampleFromJson(json);
+}
+```
+
+# Installation
+
+You will need to install [build_runner] in order to run the code generation. Install
+[firestore_converter] as dev dependency. The [firestore_converter_annotation] needs to be
+added as regular dependency:
+
+```console
+flutter pub add dev:build_runner
+flutter pub add dev:firestore_converter
+flutter pub add firestore_converter_annotation
+```
 
 # Usage
 
@@ -33,6 +79,15 @@ helper functions:
 Please note that this will be functions, not members since there is currently no way to add
 static functions via code generation to the model class. The initial letter of the model
 name will be converted to lowercase, to conform with the dart function naming conventions.
+
+# Implement fromJson and toJson
+
+Since [firestore_converter] relies on `instance.fromJson` and `instance.toJson` to be present in the annotated model class,
+you should probably also add either [freezed], [json_serializable] or some other annotation that will
+provide you with a convenient implementation of those two functions.
+
+You can also implement them manually, although that would probably defeat the reason of using code
+generation in the first place.
 
 # Things to note
 
@@ -57,6 +112,11 @@ class Example<T> with _$Example<T> {
   factory Example(int a) = _Example;
   factory Example.fromJson(Map<String, Object?> json) => _$ExampleFromJson(json);
 }
+```
+
+Run the code generation to generate `example.firestore_converter.dart`:
+```console
+flutter pub run build_runner build --delete-conflicting-outputs 
 ```
 
 
