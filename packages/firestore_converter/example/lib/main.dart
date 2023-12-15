@@ -64,31 +64,29 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        floatingActionButton: Builder(
-          builder: (context) {
-            return FloatingActionButton(
-              key: const Key('addButton'),
-              onPressed: () async {
-                var newUser = User(
-                  email: faker.internet.email(),
-                  name: faker.person.name(),
-                  salary: faker.randomGenerator.integer(100000),
-                );
-                try {
-                  await userCollection().add(newUser);
-                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                    content: Text('New user added'),
-                    key: Key('snackbar'),
-                  ));
-                } catch (e) {
-                  debugPrint(e.toString());
-                  rethrow;
-                }
-              },
-              child: const Icon(Icons.add),
-            );
-          }
-        ),
+        floatingActionButton: Builder(builder: (context) {
+          return FloatingActionButton(
+            key: const Key('addButton'),
+            onPressed: () async {
+              var newUser = User(
+                email: faker.internet.email(),
+                name: faker.person.name(),
+                salary: faker.randomGenerator.integer(100000),
+              );
+              try {
+                await userCollection().add(newUser);
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                  content: Text('New user added'),
+                  key: Key('snackbar'),
+                ));
+              } catch (e) {
+                debugPrint(e.toString());
+                rethrow;
+              }
+            },
+            child: const Icon(Icons.add),
+          );
+        }),
         body: FirestoreListView<User>(
           query: userCollection().orderBy('name'),
           itemBuilder: (context, snapshot) => Card(

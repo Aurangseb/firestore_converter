@@ -1,3 +1,7 @@
+## 1.0.7
+
+Formatting fixes, github workflow fixes 
+
 ## 1.0.6
 
 Improved README.md, fixed formatting for automated build process

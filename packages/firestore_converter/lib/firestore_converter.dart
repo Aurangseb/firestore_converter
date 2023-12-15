@@ -6,9 +6,11 @@ import 'package:source_gen/source_gen.dart';
 Builder firestoreConverterGeneratorFactory(BuilderOptions options) =>
     PartBuilder([FirestoreConverterGenerator()], '.firestore_converter.dart');
 
-class FirestoreConverterGenerator extends GeneratorForAnnotation<FirestoreConverter> {
+class FirestoreConverterGenerator
+    extends GeneratorForAnnotation<FirestoreConverter> {
   @override
-  generateForAnnotatedElement(Element element, ConstantReader annotation, BuildStep buildStep) {
+  generateForAnnotatedElement(
+      Element element, ConstantReader annotation, BuildStep buildStep) {
     if (element is! ClassElement) {
       throw InvalidGenerationSourceError(
           '@FirestoreConverter should only be applied on classes. Failing element: ${element.name}',
@@ -23,7 +25,8 @@ class FirestoreConverterGenerator extends GeneratorForAnnotation<FirestoreConver
     ''';
   }
 
-  String _firebaseCollectionReference({required String dataPath, required String className}) {
+  String _firebaseCollectionReference(
+      {required String dataPath, required String className}) {
     return '''
       CollectionReference<$className> ${className[0].toLowerCase() + className.substring(1)}Collection([String path = '$dataPath']) {
         return FirebaseFirestore.instance.collection(path).withConverter<$className>(
@@ -33,7 +36,8 @@ class FirestoreConverterGenerator extends GeneratorForAnnotation<FirestoreConver
     ''';
   }
 
-  String _firebaseDocumentReference({required String dataPath, required String className}) {
+  String _firebaseDocumentReference(
+      {required String dataPath, required String className}) {
     return '''
       DocumentReference<$className> ${className[0].toLowerCase() + className.substring(1)}Doc({String path = '$dataPath', required String docId}) {
         return FirebaseFirestore.instance.doc('\$path/\$docId').withConverter<$className>(
