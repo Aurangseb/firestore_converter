@@ -4,28 +4,35 @@ import 'package:firestore_converter_annotation/firestore_converter_annotation.da
 import 'package:source_gen_test/annotations.dart';
 
 @ShouldThrow(
-    '@FirestoreConverter should only be applied on classes. Failing element: foo')
+    '@FirestoreConverter should only be applied on classes. Failing element: throwExceptionOnNonClass')
 @FirestoreConverter(defaultPath: 'test')
-Object? foo;
+Object? throwExceptionOnNonClass;
 
 @ShouldGenerate(r'''
-CollectionReference<Foo> fooCollection([String path = 'foo-path']) {
-  return FirebaseFirestore.instance.collection(path).withConverter<Foo>(
-      fromFirestore: (snapshot, _) => _$FooFromJson(snapshot.data()!),
-      toFirestore: (instance, _) => instance.toJson());
+CollectionReference<CodeGeneration> codeGenerationCollection(
+    [String path = 'foo-path']) {
+  return FirebaseFirestore.instance
+      .collection(path)
+      .withConverter<CodeGeneration>(
+          fromFirestore: (snapshot, _) =>
+              _$CodeGenerationFromJson(snapshot.data()!),
+          toFirestore: (instance, _) => instance.toJson());
 }
 
-DocumentReference<Foo> fooDoc(
+DocumentReference<CodeGeneration> codeGenerationDoc(
     {String path = 'foo-path', required String docId}) {
-  return FirebaseFirestore.instance.doc('$path/$docId').withConverter<Foo>(
-      fromFirestore: (snapshot, _) => _$FooFromJson(snapshot.data()!),
-      toFirestore: (instance, _) => instance.toJson());
+  return FirebaseFirestore.instance
+      .doc('$path/$docId')
+      .withConverter<CodeGeneration>(
+          fromFirestore: (snapshot, _) =>
+              _$CodeGenerationFromJson(snapshot.data()!),
+          toFirestore: (instance, _) => instance.toJson());
 }
 ''')
 @FirestoreConverter(defaultPath: 'foo-path')
-class Foo {
+class CodeGeneration {
   String a;
-  Foo({required this.a});
-  factory Foo.fromJson(Map<String, dynamic> json) =>
-      Foo(a: json['a'].toString());
+  CodeGeneration({required this.a});
+  factory CodeGeneration.fromJson(Map<String, dynamic> json) =>
+      CodeGeneration(a: json['a'].toString());
 }
