@@ -1,3 +1,11 @@
+## 1.0.11
+
+Manually set platforms to Windows, Linux and macOS for executing build_runner
+
+## 1.0.10
+
+Fixing pub.dev build issues
+
 ## 1.0.9
 
 fixed build.yaml 

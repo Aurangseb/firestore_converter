@@ -1,0 +1,37 @@
+name: example
+flutter:
+  uses-material-design: true
+description: A new Flutter project.
+publish_to: none
+
+environment:
+  sdk: ">=2.17.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  firestore_converter:
+    path: ../../firestore_converter
+  json_annotation: ^4.6.0
+  freezed_annotation: ^2.4.1
+  firebase_core: ^2.24.2
+  cloud_firestore: ^4.13.6
+  faker: ^2.1.0
+  firebase_ui_firestore: ^1.5.15
+
+dev_dependencies:
+  firestore_converter_generator:
+    path: ../../firestore_converter_generator
+  json_serializable: ^6.3.2
+  build_runner:
+  flutter_test:
+    sdk: flutter
+  integration_test:
+    sdk: flutter
+  freezed: ^2.4.5
+
+dependency_overrides:
+  firestore_converter_generator:
+    path: ../../firestore_converter_generator
+  firestore_converter:
+    path: ../../firestore_converter

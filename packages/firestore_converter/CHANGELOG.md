@@ -1,3 +1,7 @@
+## 1.0.9
+
+Added example
+
 ## 1.0.8
 
 Version bump to match generator
