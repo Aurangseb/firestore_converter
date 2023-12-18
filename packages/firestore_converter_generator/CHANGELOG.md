@@ -1,3 +1,7 @@
+## 1.0.9
+
+fixed build.yaml 
+
 ## 1.0.8
 
 In order to make the annotation a flutter package and get the package information for the annotation 

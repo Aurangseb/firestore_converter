@@ -1,3 +1,7 @@
+## 1.0.8
+
+Version bump to match generator
+
 ## 1.0.3
 
 Refactored the annotation to be the main package

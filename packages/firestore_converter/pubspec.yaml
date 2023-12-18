@@ -1,7 +1,7 @@
 name: firestore_converter
 description: >
   Annotation @FirestoreConverter({String? defaultPath}) for automatic Firestore .withConverter code generation.
-version: 1.0.3
+version: 1.0.8
 repository: https://github.com/Aurangseb/firestore_converter
 issue_tracker: https://github.com/Aurangseb/firestore_converter/issues
 
