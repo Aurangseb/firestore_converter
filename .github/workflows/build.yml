@@ -16,7 +16,7 @@ jobs:
     strategy:
       matrix:
         package:
-          - packages/firestore_converter
+          - packages/firestore_converter_generator
         channel:
           - master
         dependencies:
