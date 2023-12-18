@@ -6,7 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:faker/faker.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_ui_firestore/firebase_ui_firestore.dart';
-import 'package:firestore_converter_annotation/firestore_converter_annotation.dart';
+import 'package:firestore_converter/firestore_converter.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';

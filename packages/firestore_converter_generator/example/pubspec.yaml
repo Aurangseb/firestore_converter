@@ -10,8 +10,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  firestore_converter_annotation:
-    path: ../../firestore_converter_annotation
+  firestore_converter:
+    path: ../../firestore_converter
   json_annotation: ^4.6.0
   freezed_annotation: ^2.4.1
   firebase_core: ^2.24.2
@@ -20,8 +20,8 @@ dependencies:
   firebase_ui_firestore: ^1.5.15
 
 dev_dependencies:
-  firestore_converter:
-    path: ../
+  firestore_converter_generator:
+    path: ../../firestore_converter_generator
   json_serializable: ^6.3.2
   build_runner:
   flutter_test:
@@ -31,7 +31,7 @@ dev_dependencies:
   freezed: ^2.4.5
 
 dependency_overrides:
+  firestore_converter_generator:
+    path: ../../firestore_converter_generator
   firestore_converter:
-    path: ../
-  firestore_converter_annotation:
-    path: ../../firestore_converter_annotation
+    path: ../../firestore_converter

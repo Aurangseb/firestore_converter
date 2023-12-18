@@ -1,5 +1,5 @@
 // ignore_for_file: avoid_unused_constructor_parameters, unused_element
-import 'package:firestore_converter_annotation/firestore_converter_annotation.dart';
+import 'package:firestore_converter/firestore_converter.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:source_gen_test/annotations.dart';
 
@@ -15,7 +15,7 @@ CollectionReference<CodeGeneration> codeGenerationCollection(
       .collection(path)
       .withConverter<CodeGeneration>(
           fromFirestore: (snapshot, _) =>
-              _$CodeGenerationFromJson(snapshot.data()!),
+              CodeGeneration.fromJson(snapshot.data()!),
           toFirestore: (instance, _) => instance.toJson());
 }
 
@@ -25,7 +25,7 @@ DocumentReference<CodeGeneration> codeGenerationDoc(
       .doc('$path/$docId')
       .withConverter<CodeGeneration>(
           fromFirestore: (snapshot, _) =>
-              _$CodeGenerationFromJson(snapshot.data()!),
+              CodeGeneration.fromJson(snapshot.data()!),
           toFirestore: (instance, _) => instance.toJson());
 }
 ''')

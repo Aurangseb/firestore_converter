@@ -1,3 +1,0 @@
-dependency_overrides:
-  firestore_converter_annotation:
-    path: ../firestore_converter_annotation

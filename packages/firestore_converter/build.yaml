@@ -1,19 +1,7 @@
 targets:
   $default:
     builders:
-      firestore_converter:
-        enabled: true
-        generate_for:
-          - lib/*.dart
+      source_gen|combining_builder:
         options:
           ignore_for_file:
             - "type=lint"
-
-builders:
-  firestore_converter:
-    import: "package:firestore_converter/firestore_converter.dart"
-    builder_factories: ["firestoreConverterGeneratorFactory"]
-    build_extensions:
-      .dart: [.firestore_converter.dart]
-    auto_apply: dependents
-    build_to: source

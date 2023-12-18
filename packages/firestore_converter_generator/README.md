@@ -1,13 +1,13 @@
 ![Build](https://github.com/Aurangseb/firestore_converter/workflows/Build/badge.svg)
 [![pub package](https://img.shields.io/pub/v/firestore_converter.svg)](https://pub.dartlang.org/packages/firestore_converter)
 
+# Reduce boilerplate code
+
 This packages provides you with a new annotation `@FirestoreConverter(defaultPath: 'someDataPath')` to easily generate Firestore [with_converter] implementations
 in order to reduce boilerplate code for data models.
 
 It is best used in conjunction with other annotations like [freezed] or [json_serializable],
 but it is not a requirement.
-
-# Reduce boilerplate code
 
 Before:
 
@@ -27,7 +27,7 @@ CollectionReference<Example> exampleCollection(
       .collection(path)
       .withConverter<Example>(
       fromFirestore: (snapshot, _) =>
-          Example.fromJson(snapshot.data()!),
+          _$ExampleFromJson(snapshot.data()!),
       toFirestore: (instance, _) => instance.toJson());
 }
 
@@ -37,7 +37,7 @@ DocumentReference<Example> exampleDoc(
       .doc('$path/$docId')
       .withConverter<Example>(
       fromFirestore: (snapshot, _) =>
-          Example.fromJson(snapshot.data()!),
+          _$ExampleFromJson(snapshot.data()!),
       toFirestore: (instance, _) => instance.toJson());
 }
 ```
@@ -58,23 +58,23 @@ class Example<T> with _$Example<T> {
 
 # Installation
 
-You will need to install [build_runner] in order to run the code generation. Install
-[firestore_converter_generator] as dev dependency. The package [firestore_converter] 
-needs to be added as regular dependency for enabling the annotation:
+You will need to install [build_runner] in order to run the code generation. Install 
+[firestore_converter] as dev dependency. The [firestore_converter_annotation] needs to be 
+added as regular dependency:
 
 ```console
 flutter pub add dev:build_runner
-flutter pub add dev:firestore_converter_generator
-flutter pub add firestore_converter
+flutter pub add dev:firestore_converter
+flutter pub add firestore_converter_annotation
 ```
 
 # Usage
 
-Annotate a data class with `@FirestoreConverter(defaultPath: 'someDataPathInFirestore')` to generate two
+Annotate a data class with `@FirestoreConverter(defaultPath: 'someDataPathInFirestore')` to generate two 
 helper functions:
 
-* `${modelClassName}Collection`
-* `${modelClassName}Doc`
+* `${modelClassName}Collection` 
+* `${modelClassName}Doc` 
 
 Please note that this will be functions, not members since there is currently no way to add
 static functions via code generation to the model class. The initial letter of the model
@@ -82,12 +82,12 @@ name will be converted to lowercase, to conform with the dart function naming co
 
 # Implement fromJson and toJson
 
-Since [firestore_converter] relies on `fromJson` and `toJson` to be present in the annotated model class,
+Since [firestore_converter] relies on `instance.fromJson` and `instance.toJson` to be present in the annotated model class,
 you should probably also add either [freezed], [json_serializable] or some other annotation that will
-provide you with a convenient implementation of those two functions.
+provide you with a convenient implementation of those two functions. 
 
-You can also implement them manually, although that would probably defeat the reason of using code
-generation in the first place.
+You can also implement them manually, although that would probably defeat the reason of using code 
+generation in the first place. 
 
 # Things to note
 
@@ -150,4 +150,4 @@ https://pub.dev/documentation/cloud_firestore/latest/cloud_firestore/CollectionR
 [with_converter]: https://pub.dev/documentation/cloud_firestore/latest/cloud_firestore/CollectionReference/withConverter.html
 [build_runner]: https://pub.dev/packages/build_runner
 [firestore_converter]: https://pub.dev/packages/firestore_converter
-[firestore_converter_generator]: https://pub.dev/packages/firestore_converter_generator
+[firestore_converter_annotation]: https://pub.dev/packages/firestore_converter_annotation
