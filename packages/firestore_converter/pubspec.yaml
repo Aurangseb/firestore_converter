@@ -5,6 +5,16 @@ version: 1.0.9
 repository: https://github.com/Aurangseb/firestore_converter
 issue_tracker: https://github.com/Aurangseb/firestore_converter/issues
 
+# This package supports all platforms that the package cloud_firestore supports.
+# pub.dev does not detect them correctly, therefore they are fixed here manually.
+# Right now, only Linux is not supported by cloud_firestore.
+platforms:
+  android:
+  ios:
+  macos:
+  web:
+  windows:
+
 environment:
   sdk: ">=2.17.0 <4.0.0"
 

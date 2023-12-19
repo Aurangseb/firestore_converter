@@ -1,6 +1,7 @@
 ## 1.0.9
 
-Added example
+* Added example
+* Added migration information for pre 1.0.9
 
 ## 1.0.8
 

@@ -68,6 +68,30 @@ flutter pub add dev:firestore_converter_generator
 flutter pub add firestore_converter
 ```
 
+# Migration for versions before 1.0.8
+
+If you have been using a version of [firestore_converter] before 1.0.8,
+please follow the following steps:
+
+Due to some refactoring of the early version, the package [firestore_converter_annotation]
+became obsolete, and the annotation is now in [firestore_converter].
+
+```console
+flutter pub remove firestore_converter_annotation
+flutter pub remove firestore_converter
+flutter pub add dev:build_runner
+flutter pub add dev:firestore_converter_generator
+flutter pub add firestore_converter
+```
+
+In your source code, replace
+
+`import 'package:firestore_converter_annotation/firestore_converter_annotation.dart;'`
+
+with
+
+`import 'package:firestore_converter/firestore_converter.dart';`
+
 # Usage
 
 Annotate a data class with `@FirestoreConverter(defaultPath: 'someDataPathInFirestore')` to generate two
@@ -151,3 +175,4 @@ https://pub.dev/documentation/cloud_firestore/latest/cloud_firestore/CollectionR
 [build_runner]: https://pub.dev/packages/build_runner
 [firestore_converter]: https://pub.dev/packages/firestore_converter
 [firestore_converter_generator]: https://pub.dev/packages/firestore_converter_generator
+[firestore_converter_annotation]: https://pub.dev/packages/firestore_converter_annotation
