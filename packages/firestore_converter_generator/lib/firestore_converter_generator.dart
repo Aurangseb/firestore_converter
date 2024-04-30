@@ -4,7 +4,7 @@ import 'package:firestore_converter/firestore_converter.dart';
 import 'package:source_gen/source_gen.dart';
 
 Builder firestoreConverterGeneratorFactory(BuilderOptions options) =>
-    PartBuilder([FirestoreConverterGenerator()], '.firestore_converter.dart');
+    PartBuilder([FirestoreConverterGenerator()], '.firestore_converter.dart', options: options);
 
 class FirestoreConverterGenerator
     extends GeneratorForAnnotation<FirestoreConverter> {
