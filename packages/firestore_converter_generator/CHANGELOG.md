@@ -1,3 +1,7 @@
+## 1.0.12
+
+accepted @ericpark's PR for allowing build.yaml options to configure the generation directories etc.
+
 ## 1.0.11
 
 Manually set platforms to Windows, Linux and macOS for executing build_runner
